@@ -1,0 +1,14 @@
+import React from 'react';
+
+const Form = () => (
+  <div id="form-container">
+    <h2>ADD NEW BOOK</h2>
+    <form>
+      <input type="text" name="title" placeholder="Title" />
+      <input type="text" name="author" placeholder="Author" />
+      <button type="submit" id="addbtn">ADD BOOK</button>
+    </form>
+  </div>
+);
+
+export default Form;
