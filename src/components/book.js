@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Book = ({ title, author }) => (
   <>
     <h3>{title}</h3>
-    <h4>{author}</h4>
+    <span>{author}</span>
   </>
 );
 
