@@ -18,13 +18,13 @@ Book.propTypes = {
   title: PropTypes.string,
   author: PropTypes.string,
   RemoveBook: PropTypes.func,
-  id: PropTypes.number,
+  id: PropTypes.number.isRequired,
 };
 
 Book.defaultProps = {
   title: '',
   author: '',
   RemoveBook: null,
-  id: '',
+  // id: 0,
 };
 export default Book;

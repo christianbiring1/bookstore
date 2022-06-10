@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Form from './form';
@@ -14,12 +15,11 @@ const Books = () => {
   };
   const RemoveBook = (id) => {
     dispatch(removeBook(id));
-    console.log(id);
   };
   return (
     <>
       {library.map((book) => (
-        <Book title={book.title} author={book.author} key={book.id} RemoveBook={RemoveBook} />
+        <Book title={book.title} author={book.author} id={book.id} key={book.id} RemoveBook={RemoveBook} />
       ))}
       <Form AddNewBook={AddNewBook} />
     </>
