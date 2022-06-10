@@ -15,16 +15,10 @@ const Book = ({
 );
 
 Book.propTypes = {
-  title: PropTypes.string,
-  author: PropTypes.string,
-  RemoveBook: PropTypes.func,
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  RemoveBook: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
 };
 
-Book.defaultProps = {
-  title: '',
-  author: '',
-  RemoveBook: null,
-  // id: 0,
-};
 export default Book;
