@@ -5,14 +5,14 @@ const REMOVE_BOOK = 'REMOVE_BOOK';
 
 const initialState = [];
 
-export const addBook = (title) => ({
+export const addBook = (NewBook) => ({
   type: ADD_BOOK,
-  title,
+  payload: NewBook,
 });
 
-export const removeBook = (title) => ({
+export const removeBook = (id) => ({
   type: REMOVE_BOOK,
-  title,
+  id,
 });
 
 const BookReducer = (state = initialState, action) => {
@@ -21,12 +21,13 @@ const BookReducer = (state = initialState, action) => {
       return [
         ...state,
         {
-          id: action.id,
-          title: action.title,
+          id: Math.random(),
+          title: action.payload.title,
+          author: action.payload.author,
         },
       ];
     case REMOVE_BOOK:
-      return state.map((book) => (book.id !== action.id));
+      return state.filter((book) => (book.id !== action.id));
     default:
       return state;
   }
