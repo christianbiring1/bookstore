@@ -21,18 +21,20 @@ const Form = () => {
   };
   return (
     <div id="form-container">
-      <h2>ADD NEW BOOK</h2>
+      <h2 className="Add-form">ADD NEW BOOK</h2>
       <form onSubmit={(e) => submitBook(e)}>
-        <input ref={refTitle} type="text" name="title" placeholder="Title" required />
-        <input ref={refAuthor} type="text" name="author" placeholder="Author" required />
-        <select required>
-          <option value="" ref={refcategory}>Categories</option>
-          <option value="Economy">Economy</option>
-          <option value="Science fiction">Science fiction</option>
-          <option value="Business">Business</option>
-          <option value="Action">Action</option>
-        </select>
-        <button type="submit" id="addbtn">ADD BOOK</button>
+        <div className="entries">
+
+          <input ref={refTitle} type="text" name="title" placeholder="Title" required />
+          <input ref={refAuthor} type="text" name="author" placeholder="Author" required />
+          <select required>
+            <option value="" ref={refcategory}>Category</option>
+            <option value="Action">Action</option>
+            <option value="Science fiction">Science fiction</option>
+            <option value="Economy">Economy</option>
+          </select>
+          <button type="submit" id="addbtn">ADD BOOK</button>
+        </div>
       </form>
     </div>
   );

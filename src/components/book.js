@@ -7,7 +7,9 @@ const Book = ({
 }) => (
   <div className="book-container">
     <div className="book-wrapper">
-      <p className="normal-text dark font-bold">{category}</p>
+      <p className="normal-text dark font-bold">
+        {category}
+      </p>
       <h4 className="title-book">{title}</h4>
       <p className="normal-text dark blue-text">{author}</p>
       <div className="book-buttons">
