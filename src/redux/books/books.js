@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const ADD_BOOK = 'ADD_BOOK';
-const REMOVE_BOOK = 'REMOVE_BOOK';
+const ADD_BOOK = 'bookstore/books/ADD_BOOK';
+const REMOVE_BOOK = 'bookstore/books/REMOVE_BOOK';
 const BASE_URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps';
 
-const GET_BOOK = 'GET_BOOK';
-const POST_BOOK = 'POST_BOOK';
+const GET_BOOK = 'bookstore/books/GET_BOOK';
+const POST_BOOK = 'bookstore/books/POST_BOOK';
 
 const PAGE_URL = `${BASE_URL}/wEKvIqnMSLMT7g9ng5Yj/books`;
 
