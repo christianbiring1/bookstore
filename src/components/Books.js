@@ -16,10 +16,12 @@ const Books = () => {
   };
   return (
     <>
-      {library.map((book) => (
-        <Book title={book.title} author={book.author} category={book.category} key={book.item_id} handleRemove={() => handleRemove(book.item_id)} />
-      ))}
-      <Form />
+      <div className="books-container">
+        {library.map((book) => (
+          <Book title={book.title} author={book.author} category={book.category} key={book.item_id} handleRemove={() => handleRemove(book.item_id)} />
+        ))}
+        <Form />
+      </div>
     </>
   );
 };

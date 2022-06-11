@@ -1,5 +1,6 @@
 import { React } from 'react';
 import { Link } from 'react-router-dom';
+import profile from '../assets/images/profile.png';
 
 const Navbar = () => {
   const links = [
@@ -9,7 +10,7 @@ const Navbar = () => {
 
   return (
     <nav className="navBar">
-      <div>Bookstore CMS</div>
+      <div className="title">Bookstore CMS</div>
       <ul>
         {links.map((link) => (
           <li key={link.id}>
@@ -21,6 +22,7 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
+      <img src={profile} alt="profile" />
     </nav>
   );
 };
