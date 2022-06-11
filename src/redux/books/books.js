@@ -1,52 +1,73 @@
+import axios from 'axios';
+
 const ADD_BOOK = 'ADD_BOOK';
 const REMOVE_BOOK = 'REMOVE_BOOK';
+const BASE_URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps';
 
-const initialState = [
-  {
-    title: 'The Hunger Games',
-    author: 'Suzanne Collins',
-    id: 1,
-  },
-  {
-    title: 'Dune',
-    author: 'Frank Herbert',
-    id: 2,
-  },
-  {
-    title: 'Capital in Twenty-First Century',
-    author: 'Suzanne Collins',
-    id: 3,
-  },
-  {
-    title: 'What the wise man fear',
-    author: 'William SheckSpear',
-    id: 4,
-  },
-];
+const GET_BOOK = 'GET_BOOK';
+const POST_BOOK = 'POST_BOOK';
 
-export const addBook = (NewBook) => ({
-  type: ADD_BOOK,
-  payload: NewBook,
-});
+const PAGE_URL = `${BASE_URL}/wEKvIqnMSLMT7g9ng5Yj/books`;
 
 export const removeBook = (id) => ({
   type: REMOVE_BOOK,
   id,
 });
 
-const BookReducer = (state = initialState, action) => {
+export const addBook = (NewBook) => ({
+  type: ADD_BOOK,
+  payload: NewBook,
+});
+
+export const getBooks = (books) => ({
+  type: GET_BOOK,
+  books,
+});
+
+export const postBook = (book) => ({
+  type: POST_BOOK,
+  book,
+});
+
+export const sendBook = (book) => async (dispatch) => {
+  await axios.post(PAGE_URL, book);
+  dispatch(addBook(book));
+};
+
+export const fetchBook = () => async (dispatch) => {
+  const response = await axios.get(PAGE_URL);
+  const BooksData = await response.data;
+  const books = [];
+  Object.entries(BooksData).forEach((book) => {
+    books.push({
+      item_id: book[0],
+      ...book[1][0],
+    });
+  });
+  dispatch(getBooks(books));
+};
+
+export const deleteBook = (Id) => async (dispatch) => {
+  axios.delete(`${PAGE_URL}/${Id}`);
+  dispatch(removeBook(Id));
+};
+
+const BookReducer = (state = [], action) => {
   switch (action.type) {
     case ADD_BOOK:
       return [
         ...state,
         {
-          id: Math.random(),
+          item_id: action.payload.item_id,
           title: action.payload.title,
           author: action.payload.author,
+          category: action.payload.category,
         },
       ];
     case REMOVE_BOOK:
-      return state.filter((book) => (book.id !== action.id));
+      return [...state].filter((book) => (book.item_id !== action.id));
+    case GET_BOOK:
+      return action.books;
     default:
       return state;
   }

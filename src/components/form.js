@@ -1,27 +1,32 @@
-import React, { useState } from 'react';
-import { PropTypes } from 'prop-types';
+import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { sendBook } from '../redux/books/books';
 
-const Form = ({ AddNewBook }) => {
-  const [newBook, setnewBook] = useState({ title: '', author: '' });
-
+const Form = () => {
+  const refTitle = useRef();
+  const refAuthor = useRef();
+  const dispatch = useDispatch();
+  const submitBook = (e) => {
+    e.preventDefault();
+    dispatch(sendBook({
+      item_id: Math.random(),
+      title: refTitle.current.value,
+      author: refAuthor.current.value,
+      category: 'Horror',
+    }));
+    refAuthor.current.value = '';
+    refTitle.current.value = '';
+  };
   return (
     <div id="form-container">
       <h2>ADD NEW BOOK</h2>
-      <form onSubmit={(e) => {
-        AddNewBook(e, newBook);
-        setnewBook({ title: '', author: '' });
-      }}
-      >
-        <input type="text" name="title" placeholder="Title" required onChange={(e) => setnewBook({ ...newBook, title: e.target.value })} />
-        <input type="text" name="author" placeholder="Author" required onChange={(e) => setnewBook({ ...newBook, author: e.target.value })} />
+      <form onSubmit={(e) => submitBook(e)}>
+        <input ref={refTitle} type="text" name="title" placeholder="Title" required />
+        <input ref={refAuthor} type="text" name="author" placeholder="Author" required />
         <button type="submit" id="addbtn">ADD BOOK</button>
       </form>
     </div>
   );
-};
-
-Form.propTypes = {
-  AddNewBook: PropTypes.func.isRequired,
 };
 
 export default Form;
