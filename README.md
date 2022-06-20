@@ -12,7 +12,9 @@ Remove a selected book
 - CSS
 - JavaScript ( React )
 
-## Live Demo ( Not yet available )
+## Live Demo
+
+You can check the live demo [here](https://chrisbookstore.herokuapp.com/)
 
 You can check the live demo []()
 
